@@ -5,7 +5,7 @@
 ;; URL: https://github.com/veelenga/ameba.el
 ;; Keywords: convenience
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "24.4") (dash "2.12.0") (request "0.2.0"))
+;; Package-Requires: ((emacs "24.4"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -33,9 +33,9 @@
 ;;
 ;; ### Features:
 ;;
-;; * Allows to run Ameba on the entire project
-;; * Allows to prompt from a directory on which to run Ameba
-;; * Allows to run Ameba on the currently visited file
+;; * [x] Allows to run Ameba on the currently visited file
+;; * [ ] Allows to run Ameba on the entire project
+;; * [ ] Allows to prompt from a directory on which to run Ameba
 ;;
 ;; ### Usage
 ;;
@@ -45,6 +45,8 @@
 
 ;;; Code:
 
+(require 'tramp)
+
 (defgroup ameba nil
   "An Emacs interface to Ameba"
   :prefix "ameba-"
@@ -53,7 +55,7 @@
   :link '(url-link :tag "GitHub" "https://github.com/veelenga/ameba.el"))
 
 (defcustom ameba-project-root-files
-  '(".projectile" ".git" ".hg" ".ameba.yml")
+  '(".projectile" ".git" ".hg" ".ameba.yml" "shard.yml")
   "A list of files considered to mark the root of a project."
   :type '(repeat string))
 
@@ -61,6 +63,80 @@
   "ameba --format flycheck"
   "The command used to run Ameba checks."
   :type 'string)
+
+(defcustom ameba-keymap-prefix (kbd "C-c C-r")
+  "Ameba keymap prefix."
+  :group 'ameba
+  :type 'string)
+
+(cl-defun ameba-local-file-name (file-name)
+  "Retrieve local filename if FILE-NAME is opened via TRAMP."
+  (cond ((tramp-tramp-file-p file-name)
+         (tramp-file-name-localname (tramp-dissect-file-name file-name)))
+        (t
+         file-name)))
+
+(cl-defun ameba-project-root (&optional no-error)
+  "Retrieve the root directory of a project if available.
+When NO-ERROR is non-nil returns nil instead of raise an error."
+  (or
+   (car
+    (mapcar #'expand-file-name
+            (delq nil
+                  (mapcar
+                   (lambda (f) (locate-dominating-file default-directory f))
+                   ameba-project-root-files))))
+   (if no-error
+       nil
+     (error "You're not into a project"))))
+
+(cl-defun ameba-buffer-name (file-or-dir)
+  "Generate a name for the Ameba buffer from FILE-OR-DIR."
+  (concat "*Ameba " file-or-dir "*"))
+
+(cl-defun ameba-build-command (command path)
+  "Build the full command to be run based on COMMAND and PATH."
+  (concat command " " path))
+
+(cl-defun ameba-ensure-installed ()
+  "Check if Ameba is installed."
+  (unless (executable-find "ameba")
+    (error "Ameba is not installed")))
+
+(defun ameba--file-command (command)
+  "Run COMMAND on currently visited file."
+  (ameba-ensure-installed)
+  (let ((file-name (buffer-file-name (current-buffer))))
+    (if file-name
+        (let ((default-directory (or (ameba-project-root 'no-error) default-directory)))
+          (compilation-start
+           (ameba-build-command command (ameba-local-file-name file-name))
+           'compilation-mode
+           (lambda (_arg) (ameba-buffer-name file-name))))
+      (error "Buffer is not visiting a file"))))
+
+;;;###autoload
+(defun ameba-check-current-file ()
+  "Run check on current file."
+  (interactive)
+  (ameba--file-command ameba-check-command))
+
+;;; Minor mode
+(defvar ameba-mode-map
+  (let ((map (make-sparse-keymap)))
+    (let ((prefix-map (make-sparse-keymap)))
+      (define-key prefix-map (kbd "f") #'ameba-check-current-file)
+
+      (define-key map ameba-keymap-prefix prefix-map))
+    map)
+  "Keymap for Ameba mode.")
+
+;;;###autoload
+(define-minor-mode ameba-mode
+  "Minor mode to interface with Ameba."
+  :lighter " Ameba"
+  :keymap ameba-mode-map
+  :group 'ameba)
 
 (provide 'ameba)
 ;;; ameba.el ends here
