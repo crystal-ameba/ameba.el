@@ -33,9 +33,9 @@
 ;;
 ;; ### Features:
 ;;
-;; * [x] Allows to run Ameba on the currently visited file
-;; * [ ] Allows to run Ameba on the entire project
-;; * [ ] Allows to prompt from a directory on which to run Ameba
+;; * Allows to run Ameba on the currently visited file
+;; * Allows to run Ameba on the entire project
+;; * Allows to prompt from a directory on which to run Ameba
 ;;
 ;; ### Usage
 ;;
@@ -115,11 +115,36 @@ When NO-ERROR is non-nil returns nil instead of raise an error."
            (lambda (_arg) (ameba-buffer-name file-name))))
       (error "Buffer is not visiting a file"))))
 
+(defun ameba--dir-command (command &optional directory)
+  "Run command on the DIRECTORY if present, prompt user if not."
+  (ameba-ensure-installed)
+  (let ((directory
+         (or directory
+             (read-directory-name "Select directory: "))))
+    (let ((default-directory (or (ameba-project-root 'no-error) default-directory)))
+      (compilation-start
+       (ameba-build-command command (ameba-local-file-name directory))
+       'compilation-mode
+       (lambda (arg) (message arg) (ameba-buffer-name directory))))))
+
 ;;;###autoload
 (defun ameba-check-current-file ()
-  "Run check on current file."
+  "Run check on the current file."
   (interactive)
   (ameba--file-command ameba-check-command))
+
+;;;###autoload
+(defun ameba-check-project ()
+  "Run check on the current project."
+  (interactive)
+  (ameba-check-directory (ameba-project-root)))
+
+
+;;;###autoload
+(defun ameba-check-directory (&optional directory)
+  "Run check on the DIRECTORY if present or prompt user if not."
+  (interactive)
+  (ameba--dir-command ameba-check-command directory))
 
 ;;; Minor mode
 (defvar ameba-mode-map

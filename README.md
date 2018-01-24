@@ -11,9 +11,9 @@ This package allows you to use this tool directly in Emacs.
 
 ### Features:
 
-* [x] Allows to run Ameba on the currently visited file
-* [ ] Allows to run Ameba on the entire project
-* [ ] Allows to prompt from a directory on which to run Ameba
+* Allows to run Ameba on the currently visited file
+* Allows to run Ameba on the entire project
+* Allows to prompt from a directory on which to run Ameba
 
 ### Usage
 
@@ -26,7 +26,15 @@ See [Function Documentation](#function-documentation) for details.
 
 #### `(ameba-check-current-file)`
 
-Run check on current file.
+Run check on the current file.
+
+#### `(ameba-check-project)`
+
+Run check on the current project.
+
+#### `(ameba-check-directory &optional DIRECTORY)`
+
+Run check on the DIRECTORY if present or prompt user if not.
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">
