@@ -1,4 +1,4 @@
-;;; ameba.el --- An Emacs interface to [Ameba](https://github.com/veelenga/ameba)
+;;; ameba.el --- An Emacs interface to Ameba Crystal linter <https://github.com/veelenga/ameba>
 
 ;; Copyright © 2018 Vitalii Elenhaupt <velenhaupt@gmail.com>
 ;; Author: Vitalii Elenhaupt
