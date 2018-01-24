@@ -24,23 +24,25 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;
-;; [Ameba](https://github.com/veelenga/ameba) is a static code analysis tool
-;; for [Crystal](https://crystal-lang.org/).
-;;
+
+;; Ameba <https://github.com/veelenga/ameba> is a static code analysis tool for Crystal.
 ;; This package allows you to use this tool directly in Emacs.
-;;
-;; ### Features:
-;;
-;; * Allows to run Ameba on the currently visited file
-;; * Allows to run Ameba on the entire project
-;; * Allows to prompt from a directory on which to run Ameba
-;;
-;; ### Usage
-;;
+
+;; Usage:
+
 ;; Run one of the predefined interactive functions.
+
+;; Run Ameba on the currently visited file:
 ;;
-;; See [Function Documentation](#function-documentation) for details.
+;;     (ameba-check-current-file)
+;;
+;; Run Ameba on the entire project:
+;;
+;;     (ameba-check-current-project)
+;;
+;; Prompt from a directory on which to run Ameba:
+;;
+;;     (ameba-check-directory)
 
 ;;; Code:
 

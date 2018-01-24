@@ -14,6 +14,7 @@ This package allows you to use this tool directly in Emacs.
 * Allows to run Ameba on the currently visited file
 * Allows to run Ameba on the entire project
 * Allows to prompt from a directory on which to run Ameba
+* Flycheck mode
 
 ### Usage
 
