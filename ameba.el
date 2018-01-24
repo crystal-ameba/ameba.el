@@ -4,7 +4,6 @@
 ;; Author: Vitalii Elenhaupt
 ;; URL: https://github.com/veelenga/ameba.el
 ;; Keywords: convenience
-;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24.4"))
 
 ;; This file is not part of GNU Emacs.
