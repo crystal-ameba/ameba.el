@@ -9,6 +9,8 @@ for [Crystal](https://crystal-lang.org/).
 
 This package allows you to use this tool directly in Emacs.
 
+Supports Ameba of version >= `0.4.2`.
+
 ### Features:
 
 * Allows to run Ameba on the currently visited file
