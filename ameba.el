@@ -1,6 +1,6 @@
 ;;; ameba.el --- An Emacs interface to Ameba Crystal linter <https://github.com/veelenga/ameba>
 
-;; Copyright © 2018 Vitalii Elenhaupt <velenhaupt@gmail.com>
+;; Copyright © 2018-2019 Vitalii Elenhaupt <velenhaupt@gmail.com>
 ;; Author: Vitalii Elenhaupt
 ;; URL: https://github.com/veelenga/ameba.el
 ;; Keywords: convenience
@@ -38,7 +38,7 @@
 ;;
 ;; Run Ameba on the entire project:
 ;;
-;;     (ameba-check-current-project)
+;;     (ameba-check-project)
 ;;
 ;; Prompt from a directory on which to run Ameba:
 ;;
@@ -91,6 +91,10 @@ When NO-ERROR is non-nil returns nil instead of raise an error."
        nil
      (error "You're not into a project"))))
 
+(cl-defun ameba-project-lib ()
+  "Returns the path to the lib directory in a project root."
+  (concat "!" (ameba-project-root) "lib"))
+
 (cl-defun ameba-buffer-name (file-or-dir)
   "Generate a name for the Ameba buffer from FILE-OR-DIR."
   (concat "*Ameba " file-or-dir "*"))
@@ -138,8 +142,8 @@ When NO-ERROR is non-nil returns nil instead of raise an error."
 (defun ameba-check-project ()
   "Run check on the current project."
   (interactive)
-  (ameba-check-directory (ameba-project-root)))
-
+  (ameba-check-directory
+   (concat (ameba-project-root) " " (ameba-project-lib))))
 
 ;;;###autoload
 (defun ameba-check-directory (&optional directory)
