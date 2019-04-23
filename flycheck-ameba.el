@@ -1,4 +1,4 @@
-;;; flycheck-ameba.el --- Add support for Ameba to Flycheck
+;;; flycheck-ameba.el --- Add support for Ameba to Flycheck -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2017 V. Elenhaupt
 
@@ -79,4 +79,4 @@ This is either a parent directory containing a .ameba.yml, or nil."
 
 (provide 'flycheck-ameba)
 
-;;; flycheck-crystal.el ends here
+;;; flycheck-ameba.el ends here
