@@ -121,7 +121,7 @@ When NO-ERROR is non-nil returns nil instead of raise an error."
       (error "Buffer is not visiting a file"))))
 
 (defun ameba--dir-command (command &optional directory)
-  "Run command on the DIRECTORY if present, prompt user if not."
+  "Run COMMAND on the DIRECTORY if present, prompt user if not."
   (ameba-ensure-installed)
   (let ((directory
          (or directory
