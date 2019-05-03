@@ -1,9 +1,10 @@
-;;; ameba.el --- An Emacs interface to Ameba Crystal linter <https://github.com/veelenga/ameba> -*- lexical-binding: t; -*-
+;;; ameba.el --- An interface to Crystal Ameba linter. -*- lexical-binding: t; -*-
 
 ;; Copyright © 2018-2019 Vitalii Elenhaupt <velenhaupt@gmail.com>
 ;; Author: Vitalii Elenhaupt
 ;; URL: https://github.com/veelenga/ameba.el
 ;; Keywords: convenience
+;; Version: 0
 ;; Package-Requires: ((emacs "24.4"))
 
 ;; This file is not part of GNU Emacs.
@@ -24,14 +25,14 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
+;;
 ;; Ameba <https://github.com/veelenga/ameba> is a static code analysis tool for Crystal.
 ;; This package allows you to use this tool directly in Emacs.
-
+;;
 ;; Usage:
-
+;;
 ;; Run one of the predefined interactive functions.
-
+;;
 ;; Run Ameba on the currently visited file:
 ;;
 ;;     (ameba-check-current-file)

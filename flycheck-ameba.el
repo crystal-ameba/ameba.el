@@ -5,7 +5,8 @@
 ;; Authors: V. Elenhaupt
 ;; URL: https://github.com/veelenga/ameba.el
 ;; Keywords: tools crystal ameba
-;; Package-Requires: ((flycheck "30"))
+;; Version: 0
+;; Package-Requires: ((emacs "24.4") (flycheck "30"))
 
 ;; This file is not part of GNU Emacs.
 
