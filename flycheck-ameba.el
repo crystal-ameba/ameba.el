@@ -29,8 +29,7 @@
 ;; Flycheck package.  To use it, have Flycheck installed, then add the following
 ;; to your init file:
 ;;
-;;    (require 'flycheck-ameba)
-;;    (add-hook 'ameba-mode 'flycheck-ameba)
+;;    (flycheck-ameba-setup)
 
 ;;; Code:
 
@@ -76,7 +75,11 @@ This is either a parent directory containing a .ameba.yml, or nil."
   :modes crystal-mode
   )
 
-(add-to-list 'flycheck-checkers 'crystal-ameba)
+;;;###autoload
+(defun flycheck-ameba-setup ()
+  "Setup Flycheck Ameba."
+  (interactive)
+  (add-to-list 'flycheck-checkers 'crystal-ameba))
 
 (provide 'flycheck-ameba)
 
