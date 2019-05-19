@@ -3,6 +3,8 @@
 
 ---
 [![License GPLv3](https://img.shields.io/badge/license-GPL_v3-green.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
+[![MELPA](https://melpa.org/packages/ameba-badge.svg)](https://melpa.org/#/ameba)
+[![MELPA](https://melpa.org/packages/flycheck-ameba-badge.svg)](https://melpa.org/#/flycheck-ameba)
 
 [Ameba](https://github.com/veelenga/ameba) is a static code analysis tool
 for [Crystal](https://crystal-lang.org/).
@@ -17,6 +19,10 @@ Supports Ameba of version >= `0.4.2`.
 * Allows to run Ameba on the entire project
 * Allows to prompt from a directory on which to run Ameba
 * Flycheck mode
+
+### Installation
+
+[ameba](https://melpa.org/#/ameba) and [flycheck-ameba](https://melpa.org/#/flycheck-ameba) packages are available on Melpa.
 
 ### Usage
 
