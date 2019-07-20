@@ -1,12 +1,12 @@
 ## ameba.el
-*An Emacs interface to [Ameba](https://github.com/veelenga/ameba)*
+*An Emacs interface to [Ameba](https://github.com/crystal-ameba/ameba)*
 
 ---
 [![License GPLv3](https://img.shields.io/badge/license-GPL_v3-green.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![MELPA](https://melpa.org/packages/ameba-badge.svg)](https://melpa.org/#/ameba)
 [![MELPA](https://melpa.org/packages/flycheck-ameba-badge.svg)](https://melpa.org/#/flycheck-ameba)
 
-[Ameba](https://github.com/veelenga/ameba) is a static code analysis tool
+[Ameba](https://github.com/crystal-ameba/ameba) is a static code analysis tool
 for [Crystal](https://crystal-lang.org/).
 
 This package allows you to use this tool directly in Emacs.

@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017 V. Elenhaupt
 
 ;; Authors: V. Elenhaupt
-;; URL: https://github.com/veelenga/ameba.el
+;; URL: https://github.com/crystal-ameba/ameba.el
 ;; Keywords: tools crystal ameba
 ;; Version: 0
 ;; Package-Requires: ((emacs "24.4") (flycheck "30"))

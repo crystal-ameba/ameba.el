@@ -2,7 +2,7 @@
 
 ;; Copyright © 2018-2019 Vitalii Elenhaupt <velenhaupt@gmail.com>
 ;; Author: Vitalii Elenhaupt
-;; URL: https://github.com/veelenga/ameba.el
+;; URL: https://github.com/crystal-ameba/ameba.el
 ;; Keywords: convenience
 ;; Version: 0
 ;; Package-Requires: ((emacs "24.4"))
@@ -26,7 +26,7 @@
 
 ;;; Commentary:
 ;;
-;; Ameba <https://github.com/veelenga/ameba> is a static code analysis tool for Crystal.
+;; Ameba <https://github.com/crystal-ameba/ameba> is a static code analysis tool for Crystal.
 ;; This package allows you to use this tool directly in Emacs.
 ;;
 ;; Usage:
@@ -54,7 +54,7 @@
   :prefix "ameba-"
   :group 'convenience
   :group 'tools
-  :link '(url-link :tag "GitHub" "https://github.com/veelenga/ameba.el"))
+  :link '(url-link :tag "GitHub" "https://github.com/crystal-ameba/ameba.el"))
 
 (defcustom ameba-project-root-files
   '(".projectile" ".git" ".hg" ".ameba.yml" "shard.yml")
