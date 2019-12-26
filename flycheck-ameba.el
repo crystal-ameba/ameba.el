@@ -39,10 +39,10 @@
   "Compute an appropriate working-directory for flycheck-ameba.
 This is either a parent directory containing a .ameba.yml, or nil."
   (or
-  (and
+   (and
     buffer-file-name
     (locate-dominating-file buffer-file-name ".ameba.yml"))
-  default-directory))
+   default-directory))
 
 (flycheck-define-checker crystal-ameba
   "A Crystal static syntax checker using ameba linter"
@@ -65,15 +65,13 @@ This is either a parent directory containing a .ameba.yml, or nil."
   :error-explainer
   (lambda (error)
     (let*
-       ((filename (flycheck-error-filename error))
-        (line (number-to-string (flycheck-error-line error)))
-        (column (number-to-string (flycheck-error-column error)))
-        (point (concat filename ":" line ":" column)))
+        ((filename (flycheck-error-filename error))
+         (line (number-to-string (flycheck-error-line error)))
+         (column (number-to-string (flycheck-error-column error)))
+         (point (concat filename ":" line ":" column)))
       (with-output-to-string
         (call-process "ameba" nil standard-output nil "--explain" point "--no-color"))))
-
-  :modes crystal-mode
-  )
+  :modes crystal-mode)
 
 ;;;###autoload
 (defun flycheck-ameba-setup ()
