@@ -1,4 +1,4 @@
-;;; ameba.el --- An interface to Crystal Ameba linter. -*- lexical-binding: t; -*-
+;;; ameba.el --- An interface to Crystal Ameba linter  -*- lexical-binding: t; -*-
 
 ;; Copyright © 2018-2019 Vitalii Elenhaupt <velenhaupt@gmail.com>
 ;; Author: Vitalii Elenhaupt

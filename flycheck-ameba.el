@@ -71,9 +71,7 @@ This is either a parent directory containing a .ameba.yml, or nil."
         (point (concat filename ":" line ":" column)))
       (with-output-to-string
         (call-process "ameba" nil standard-output nil "--explain" point "--no-color"))))
-
-  :modes crystal-mode
-  )
+  :modes crystal-mode)
 
 ;;;###autoload
 (defun flycheck-ameba-setup ()
