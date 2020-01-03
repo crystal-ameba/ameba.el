@@ -81,16 +81,13 @@
 (cl-defun ameba-project-root (&optional no-error)
   "Retrieve the root directory of a project if available.
 When NO-ERROR is non-nil returns nil instead of raise an error."
-  (or
-   (car
-    (mapcar #'expand-file-name
-            (delq nil
-                  (mapcar
-                   (lambda (f) (locate-dominating-file default-directory f))
-                   ameba-project-root-files))))
-   (if no-error
-       nil
-     (error "You're not into a project"))))
+  (let ((fn (lambda (f) (locate-dominating-file default-directory f))))
+    (condition-case _err
+        (expand-file-name
+         (funcall fn (cl-find-if fn ameba-project-root-files)))
+      (error
+       (unless no-error
+         (error "You're not into a project"))))))
 
 (cl-defun ameba-project-lib ()
   "Returns the path to the lib directory in a project root."
